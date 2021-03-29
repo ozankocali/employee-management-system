@@ -1,5 +1,7 @@
 package com.ozeeesoftware.employeemanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,6 +20,10 @@ public class Department {
 
     @Column(name = "min_salary")
     private double minSalary;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private List<Employee> employees;
 
 
 

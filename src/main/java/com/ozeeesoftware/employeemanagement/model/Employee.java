@@ -16,7 +16,6 @@ public class Employee {
     private String lastName;
 
     @ManyToOne
-    @JoinColumn(name = "department_id")
     private Department department;
 
     @Column(name="age")
@@ -24,6 +23,7 @@ public class Employee {
 
     @Column(name = "salary")
     private double salary;
+
 
     public Employee() {
     }

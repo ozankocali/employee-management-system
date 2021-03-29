@@ -1,7 +1,7 @@
 package com.ozeeesoftware.employeemanagement.controller;
 
 import com.ozeeesoftware.employeemanagement.model.Employee;
-import com.ozeeesoftware.employeemanagement.service.EmployeeService;
+import com.ozeeesoftware.employeemanagement.service.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +13,10 @@ import java.util.Map;
 @RequestMapping("/api/v1")
 public class EmployeeController {
     @Autowired
-    private EmployeeService employeeService;
+    private EmployeeServiceImpl employeeService;
 
     @GetMapping("/employees")
-    public List<Employee> getAllEmployees(){
+    public ResponseEntity<List<Employee>> getAllEmployees(){
         return employeeService.getAllEmployees();
     }
 
@@ -26,7 +26,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/employees/save")
-    public Employee createEmployee(@RequestBody Employee employee){
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
         return employeeService.createEmployee(employee);
     }
 

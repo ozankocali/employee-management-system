@@ -1,7 +1,7 @@
 package com.ozeeesoftware.employeemanagement.controller;
 
 import com.ozeeesoftware.employeemanagement.model.Department;
-import com.ozeeesoftware.employeemanagement.service.DepartmentService;
+import com.ozeeesoftware.employeemanagement.service.DepartmentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +14,10 @@ import java.util.Map;
 public class DepartmentController {
 
     @Autowired
-    private DepartmentService departmentService;
+    private DepartmentServiceImpl departmentService;
 
     @GetMapping("/departments")
-    public List<Department> getAllDepartments(){
+    public ResponseEntity<List<Department>> getAllDepartments(){
         return departmentService.getAllDepartments();
     }
 
@@ -27,7 +27,7 @@ public class DepartmentController {
     }
 
     @PostMapping("/departments/save")
-    public Department createDepartment(@RequestBody Department department){
+    public ResponseEntity<Department> createDepartment(@RequestBody Department department){
         return departmentService.createDepartment(department);
     }
 
