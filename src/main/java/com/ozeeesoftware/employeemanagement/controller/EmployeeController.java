@@ -25,6 +25,11 @@ public class EmployeeController {
         return employeeService.getEmployeeById(id);
     }
 
+    @GetMapping("/employees/byDepartment/{id}")
+    public ResponseEntity<List<Employee>> findAllByDepartmentId(@PathVariable long id){
+        return employeeService.findAllByDepartmentId(id);
+    }
+
     @PostMapping("/employees/save")
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
         return employeeService.createEmployee(employee);
@@ -44,5 +49,7 @@ public class EmployeeController {
     public ResponseEntity<Map<String,Boolean>> deleteEmployeeById(@PathVariable long id){
         return employeeService.deleteEmployeeById(id);
     }
+
+
 
 }

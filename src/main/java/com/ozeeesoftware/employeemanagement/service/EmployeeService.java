@@ -13,4 +13,5 @@ public interface EmployeeService {
     ResponseEntity updateEmployee(Employee employee);
     ResponseEntity deleteEmployee(Employee employee);
     ResponseEntity deleteEmployeeById(long id);
+    ResponseEntity findAllByDepartmentId(long id);
 }

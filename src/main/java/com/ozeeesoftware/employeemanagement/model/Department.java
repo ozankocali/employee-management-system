@@ -1,10 +1,12 @@
 package com.ozeeesoftware.employeemanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name="departments")
 public class Department {
@@ -23,6 +25,7 @@ public class Department {
 
     @OneToMany(fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JoinColumn(name = "department_id")
     private List<Employee> employees;
 
 
@@ -37,36 +40,6 @@ public class Department {
         this.minSalary = minSalary;
     }
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
-
-    public double getMaxSalary() {
-        return maxSalary;
-    }
-
-    public void setMaxSalary(double maxSalary) {
-        this.maxSalary = maxSalary;
-    }
-
-    public double getMinSalary() {
-        return minSalary;
-    }
-
-    public void setMinSalary(double minSalary) {
-        this.minSalary = minSalary;
-    }
 
 }

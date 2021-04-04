@@ -1,7 +1,10 @@
 package com.ozeeesoftware.employeemanagement.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name="employees")
 public class Employee {
@@ -24,6 +27,9 @@ public class Employee {
     @Column(name = "salary")
     private double salary;
 
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "imageId")
+    private ImageModel profileImage;
 
     public Employee() {
     }
@@ -36,51 +42,5 @@ public class Employee {
         this.salary = salary;
     }
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public short getAge() {
-        return age;
-    }
-
-    public void setAge(short age) {
-        this.age = age;
-    }
 }
