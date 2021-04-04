@@ -25,7 +25,6 @@ public class Department {
 
     @OneToMany(fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @JoinColumn(name = "department_id")
     private List<Employee> employees;
 
 
