@@ -12,23 +12,23 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/api/v1/image")
+@RequestMapping("/api/v1")
 public class ImageModelController {
 
     @Autowired
     private ImageModelServiceImpl imageModelService;
 
-    @PostMapping("/upload")
+    @PostMapping("/image/upload")
     public ResponseEntity<Object> storeImage(@RequestParam("file") MultipartFile image){
         return imageModelService.storeImage(image);
     }
 
-    @PostMapping("/addProfileImage/{userId}")
+    @PostMapping("/image/addProfileImage/{userId}")
     public ResponseEntity<Object> addProfileImage(@RequestParam("file") MultipartFile image,@PathVariable long userId){
         return imageModelService.addProfileImage(image,userId);
     }
 
-    @GetMapping("/downloadImage/{fileName:.+}")
+    @GetMapping("/image/downloadImage/{fileName:.+}")
     public ResponseEntity<Resource> loadFileAsResource(@PathVariable String fileName, HttpServletRequest httpServletRequest){
 
         Resource resource=imageModelService.loadFileAsResource(fileName);
