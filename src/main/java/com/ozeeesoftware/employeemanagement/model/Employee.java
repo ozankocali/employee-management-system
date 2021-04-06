@@ -27,6 +27,12 @@ public class Employee {
     @Column(name = "salary")
     private double salary;
 
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
+    private String email;
+
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "imageId")
     private ImageModel profileImage;
@@ -34,13 +40,18 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, Department department, short age, double salary) {
+    public Employee(long id, String firstName, String lastName, Department department, short age, double salary, String phone, String email, ImageModel profileImage) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.department = department;
         this.age = age;
         this.salary = salary;
+        this.phone = phone;
+        this.email = email;
+        this.profileImage = profileImage;
     }
+
 
 
 }
