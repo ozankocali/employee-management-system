@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +33,7 @@ public class DepartmentController {
     }
 
     @PutMapping("/departments/update")
-    public ResponseEntity<Department> updateDepartment(@RequestBody Department department){
+    public ResponseEntity<Department> updateDepartment(@RequestBody Department department)throws InvocationTargetException, IllegalAccessException{
         return departmentService.updateDepartment(department);
     }
 

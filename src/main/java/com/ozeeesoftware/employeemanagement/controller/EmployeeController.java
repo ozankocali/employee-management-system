@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +37,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/employees/update")
-    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee){
+    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee)throws InvocationTargetException, IllegalAccessException{
         return  employeeService.updateEmployee(employee);
     }
 
