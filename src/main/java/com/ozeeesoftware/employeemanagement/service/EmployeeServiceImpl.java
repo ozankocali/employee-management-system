@@ -3,10 +3,14 @@ package com.ozeeesoftware.employeemanagement.service;
 import com.ozeeesoftware.employeemanagement.exception.NotFoundByIdException;
 import com.ozeeesoftware.employeemanagement.model.Employee;
 import com.ozeeesoftware.employeemanagement.repository.EmployeeRepository;
+import com.ozeeesoftware.employeemanagement.util.NullAwareBeanUtilsBean;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,14 +43,13 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public ResponseEntity<Employee> updateEmployee(Employee employee){
+    public ResponseEntity<Employee> updateEmployee(Employee employee)throws InvocationTargetException, IllegalAccessException{
         Employee existingEmployee=employeeRepository.findById(employee.getId()).orElseThrow(()->new NotFoundByIdException("Employee not exist with id:"+employee.getId()));
-        existingEmployee.setFirstName(employee.getFirstName());
-        existingEmployee.setLastName(employee.getLastName());
-        existingEmployee.setSalary(employee.getSalary());
-        existingEmployee.setDepartment(employee.getDepartment());
-        existingEmployee.setAge(employee.getAge());
-        existingEmployee.setDepartment(employee.getDepartment());
+        if(existingEmployee==null){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        BeanUtilsBean exists=new NullAwareBeanUtilsBean();
+        exists.copyProperties(existingEmployee,employee);
         return ResponseEntity.ok(employeeRepository.save(existingEmployee));
     }
 

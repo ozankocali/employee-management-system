@@ -3,10 +3,14 @@ package com.ozeeesoftware.employeemanagement.service;
 import com.ozeeesoftware.employeemanagement.exception.NotFoundByIdException;
 import com.ozeeesoftware.employeemanagement.model.Department;
 import com.ozeeesoftware.employeemanagement.repository.DepartmentRepository;
+import com.ozeeesoftware.employeemanagement.util.NullAwareBeanUtilsBean;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,12 +38,13 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public ResponseEntity<Department> updateDepartment(Department department){
+    public ResponseEntity<Department> updateDepartment(Department department)throws InvocationTargetException, IllegalAccessException {
         Department existingDepartment=departmentRepository.findById(department.getId()).orElseThrow(()-> new NotFoundByIdException("Department not exist with id: "+department.getId()));
-        existingDepartment.setDepartmentName(department.getDepartmentName());
-        existingDepartment.setMaxSalary(department.getMaxSalary());
-        existingDepartment.setMinSalary(department.getMinSalary());
-
+        if(existingDepartment==null){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        BeanUtilsBean exists=new NullAwareBeanUtilsBean();
+        exists.copyProperties(existingDepartment,department);
         return ResponseEntity.ok(departmentRepository.save(existingDepartment));
     }
 
