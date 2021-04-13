@@ -24,6 +24,9 @@ public class Employee {
     @Column(name="age")
     private short age;
 
+    @Column(name = "address")
+    private String address;
+
     @Column(name = "salary")
     private double salary;
 
@@ -40,17 +43,19 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(long id, String firstName, String lastName, Department department, short age, double salary, String phone, String email, ImageModel profileImage) {
+    public Employee(long id, String firstName, String lastName, Department department, short age, String address, double salary, String phone, String email, ImageModel profileImage) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.department = department;
         this.age = age;
+        this.address = address;
         this.salary = salary;
         this.phone = phone;
         this.email = email;
         this.profileImage = profileImage;
     }
+
 
 
 

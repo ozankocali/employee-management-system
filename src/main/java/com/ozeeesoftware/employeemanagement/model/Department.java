@@ -23,6 +23,12 @@ public class Department {
     @Column(name = "min_salary")
     private double minSalary;
 
+    @Column(name="description")
+    private String jobDescription;
+
+    @Column(name = "phone")
+    private String phone;
+
     @OneToMany(fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<Employee> employees;
