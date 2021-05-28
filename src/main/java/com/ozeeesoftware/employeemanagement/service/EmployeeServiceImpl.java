@@ -27,12 +27,12 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public ResponseEntity<Employee> getEmployeeById(long id){
+    public ResponseEntity<Employee> getEmployeeById(Long id){
         Employee employee=employeeRepository.findById(id).orElseThrow(()->new NotFoundByIdException("Employee not exist with id:"+id));
         return ResponseEntity.ok(employee);
     }
     @Override
-    public ResponseEntity<List<Employee>> findAllByDepartmentId(long id) {
+    public ResponseEntity<List<Employee>> findAllByDepartmentId(Long id) {
         List<Employee> employees=employeeRepository.findAllByDepartmentId(id);
         return ResponseEntity.ok(employees);
     }
@@ -63,7 +63,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public ResponseEntity<Map<String,Boolean>> deleteEmployeeById(long id){
+    public ResponseEntity<Map<String,Boolean>> deleteEmployeeById(Long id){
         Employee employee=employeeRepository.findById(id).orElseThrow(()->new NotFoundByIdException("Employee not exist with id:"+id));
         employeeRepository.delete(employee);
         Map<String,Boolean> response=new HashMap<>();

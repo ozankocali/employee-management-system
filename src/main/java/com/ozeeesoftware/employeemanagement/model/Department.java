@@ -1,7 +1,9 @@
 package com.ozeeesoftware.employeemanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,10 +11,12 @@ import java.util.List;
 @Data
 @Entity
 @Table(name="departments")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "department_name")
     private String departmentName;
@@ -35,9 +39,6 @@ public class Department {
 
 
 
-    public Department() {
-
-    }
 
     public Department(String departmentName, double maxSalary, double minSalary) {
         this.departmentName = departmentName;

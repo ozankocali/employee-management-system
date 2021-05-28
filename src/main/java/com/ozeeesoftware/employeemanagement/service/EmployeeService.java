@@ -9,10 +9,10 @@ import java.util.Map;
 
 public interface EmployeeService {
     ResponseEntity getAllEmployees();
-    ResponseEntity getEmployeeById(long id);
+    ResponseEntity getEmployeeById(Long id);
     ResponseEntity createEmployee(Employee employee);
     ResponseEntity updateEmployee(Employee employee)throws InvocationTargetException, IllegalAccessException;
     ResponseEntity deleteEmployee(Employee employee);
-    ResponseEntity deleteEmployeeById(long id);
-    ResponseEntity findAllByDepartmentId(long id);
+    ResponseEntity deleteEmployeeById(Long id);
+    ResponseEntity findAllByDepartmentId(Long id);
 }
