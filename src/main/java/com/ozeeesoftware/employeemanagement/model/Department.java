@@ -38,14 +38,12 @@ public class Department {
     private List<Employee> employees;
 
 
-
-
-    public Department(String departmentName, double maxSalary, double minSalary) {
+    public Department(Long id, String departmentName, double maxSalary, double minSalary, String jobDescription, String phone) {
+        this.id = id;
         this.departmentName = departmentName;
         this.maxSalary = maxSalary;
         this.minSalary = minSalary;
+        this.jobDescription = jobDescription;
+        this.phone = phone;
     }
-
-
-
 }
