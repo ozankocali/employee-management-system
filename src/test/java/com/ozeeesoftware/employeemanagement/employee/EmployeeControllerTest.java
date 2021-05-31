@@ -160,7 +160,7 @@ public class EmployeeControllerTest {
         Employee existingEmployee=new Employee(1L,"test-firstName","test-lastName"
                 ,department,(short)1,"test-address",1,"1","test-mail",imageModel);
 
-        Employee updatedEmployee=new Employee(2L,"test-firstName2","test-lastName2"
+        Employee updatedEmployee=new Employee(1L,"test-firstName2","test-lastName2"
                 ,department,(short)1,"test-address",1,"1","test-mail2",imageModel);
 
         when(employeeService.updateEmployee(updatedEmployee)).thenReturn(new ResponseEntity<Employee>(updatedEmployee,HttpStatus.OK));

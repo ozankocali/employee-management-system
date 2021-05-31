@@ -106,7 +106,7 @@ public class DepartmentControllerTest {
     public void testUpdateDepartment()throws Exception{
         Department existingDepartment=new Department(1L,"test-name",1,1,"test-description","1");
 
-        Department updatedDepartment=new Department(2L,"test-name2",1,1,"test-description2","1");
+        Department updatedDepartment=new Department(1L,"test-name2",1,1,"test-description2","1");
 
         when(departmentService.updateDepartment(updatedDepartment)).thenReturn(new ResponseEntity<Department>(updatedDepartment,HttpStatus.OK));
 
